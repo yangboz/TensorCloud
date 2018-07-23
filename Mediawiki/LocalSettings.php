@@ -112,6 +112,21 @@ $wgRightsUrl = "";
 $wgRightsText = "";
 $wgRightsIcon = "";
 
+## Math
+require_once "$IP/extensions/Math/Math.php";
+$wgDefaultUserOptions['math'] = 'mathml';
+$wgMathFullRestbaseURL = 'https://en.wikipedia.org/api/rest_';
+
+## Overriding the default File Extension with a bundle of filetypes
+$wgFileExtensions = array(
+    'png', 'gif', 'jpg', 'jpeg', 'jp2', 'webp', 'ppt', 'pdf', 'psd',
+    'mp3', 'xls', 'xlsx', 'swf', 'doc','docx', 'odt', 'odc', 'odp',
+    'odg', 'mpp'
+    );
+
+//$wgShowExceptionDetails = true;
+//$wgShowDBErrorBacktrace = true;
+
 # Path to the GNU diff3 utility. Used for conflict resolution.
 $wgDiff3 = "/usr/bin/diff3";
 
@@ -126,6 +141,14 @@ wfLoadSkin( 'Modern' );
 wfLoadSkin( 'MonoBook' );
 wfLoadSkin( 'Vector' );
 
+# Piwik.
+# Add more configuration options below.
+require_once "$IP/extensions/Piwik/Piwik.php";
+$wgPiwikURL = "47.96.87.30:4446/";
+$wgPiwikIDSite = "2";
+$wgPiwikTrackUsernames = true;
+$wgPiwikUsePageTitle = true;
+$wgPiwikActionName = "wiki/"
 
 $wgExceptionDetails=true;
 
@@ -135,3 +158,26 @@ require_once "$IP/extensions/GoogleLogin/GoogleLogin.php";
 $wgGLAppId = '633843581077-ucl51u47rrlm2650ptruea92q222aus.apps.googleusercontent.com';
 $wgGLSecret = '7yzVPzxtcoi17vP-mJcEXQy6';
 $wgGroupPermissions['*']['createaccount'] = true;
+
+#OAuthClient 
+#https://www.mediawiki.org/wiki/Manual:$wgInvalidUsernameCharacters
+$wgInvalidUsernameCharacters = '';
+wfLoadExtension( 'MW-OAuth2Client' );
+
+$wgOAuth2Client['client']['id']     = 'lcpcN3RTTdhhY1DLYH2L93tJ8UgUko6FAwSozJhs'; // The client ID assigned to you by the provider
+$wgOAuth2Client['client']['secret'] = 'XyKWznIy4KkdONXWIdQ2BXIctBA3lSwiqge0DXzI'; // The client secret assigned to you by the provider
+
+$wgOAuth2Client['configuration']['authorize_endpoint']     = 'http://remix.zone/oauth/authorize/'; // Authorization URL
+$wgOAuth2Client['configuration']['access_token_endpoint']  = 'http://remix.zone/oauth/token/'; // Token URL
+$wgOAuth2Client['configuration']['api_endpoint']           = 'http://remix.zone/oauth/me';//access_token=7cooy2jwgvzn5wbn6uiz27tszsf3zcjj'; // URL to fetch user JSON
+$wgOAuth2Client['configuration']['redirect_uri']           = 'http://remix.digital/index.php/Special:OAuth2Client/callback'; // URL for OAuth2 server to redirect to, "http://localhost:8080/login/phabricator"
+
+$wgOAuth2Client['configuration']['username'] = 'user_login'; // JSON path to username
+$wgOAuth2Client['configuration']['email'] = 'user_email'; // JSON path to email
+
+$wgOAuth2Client['configuration']['http_bearer_token'] = 'Bearer'; // Token to use in HTTP Authentication
+$wgOAuth2Client['configuration']['query_parameter_token'] = 'access_token'; // query parameter to use
+//$wgOAuth2Client['configuration']['scopes'] = 'read_citizen_info'; //Permissions
+
+$wgOAuth2Client['configuration']['service_name'] = 'RemixZone Registry'; // the name of your service
+$wgOAuth2Client['configuration']['service_login_link_text'] = 'OAuth2Login'; // the text of the login link

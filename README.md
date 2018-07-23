@@ -1,23 +1,65 @@
+# Welcome
 
-#### Architecture
+Welcome to TensorCloud! This is the default page we've installed for your convenience. Go ahead and edit it.
 
-![Screenshot of v2Framework](https://raw.githubusercontent.com/yangboz/2017-2018-computing-thinking/master/Docker/v2/Documents/2.jpg)
+## Mariadb
 
-#### 0. 从WIKI网页(支持LaTex数学方程式排版)开始，阅读说明使用文档，包含系统说明以及Phabricator项目管理的软件功能开发和问题跟踪，或进入Jenkins首页；
-
-#### 1. 使用Jenkins(包括本身)安装GitLab、Wiki、Piwik、Jenkins、Nexus3、HyperLedger(本地)、Docker、NetLogo、Hugo、Netlify、JupyterHub、OpenModelica、ELK等一系列基础环境;
-
-#### 2. 建立自己的 Docker Registry，私有的Docker镜像服务，用于存储我们自己的Docker镜像仓库（Repository）;
-
-#### 3. 使用GitLab进行代码管理，并联动Jenkins进行自动化打包，生成Docker Image，推送到自己的Repository;
-
-#### 4. 使用Docker Compose在目的机上进行集成环境部署，完成并使用一套围棋微服务的案例展示;
-
-#### 5. 使用Kubernetes在可控计算资源机器上进行微服务动态监控与部署;
+Website: https://mariadb.org/
 
 
-#### Reference
+## Mediawiki
 
-![Screenshot of v2Framework](https://raw.githubusercontent.com/yangboz/2017-2018-computing-thinking/master/Docker/v2/Documents/1.jpg)
+Website: https://www.mediawiki.org/wiki/MediaWiki
 
-https://blog.catscarlet.com/201612022593.html
+
+### Mariadb+Mediawiki features
+
+
+
+### How to run it?
+
+```
+docker-compose -f Mediawiki/mariadb_mediawiki.yml up 
+```
+
+#### Docker in Docker
+
+```
+docker run --privileged -p 80:80 -e PORT=80 smartkit/tensor-cloud-dind:mariadb_mediawiki
+```
+
+## Wordpress
+
+Website: https://wordpress.org/
+
+
+### Mariadb+Wordpress features
+
+
+
+### How to run it?
+
+```
+docker-compose -f WordPress/mariadb_wordpress.yml up 
+```
+#### Docker in Docker
+
+```
+docker run --privileged -d -p 80:80 -e PORT=80 smartkit/tensor-cloud-dind:mariadb_wordpress
+```
+
+## Piwik
+
+Website: https://matomo.org/
+
+### Mariadb+Mediawiki+Wordpress+Piwik features
+
+
+
+### How to run it?
+
+```
+docker-compose -f Wordpress/docker-compose.yml -f mediawiki.yml -f piwik.yml -f phabricator.yml up
+```
+
+And more, http://toyhouse.cc/wiki/index.php/Get_Started_with_Remix#Using_Remix
